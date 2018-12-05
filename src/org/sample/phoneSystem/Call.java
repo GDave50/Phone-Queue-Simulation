@@ -2,7 +2,7 @@ package org.sample.phoneSystem;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.sample.Main;
+import org.sample.PhoneQueueSimulation;
 
 //import org.openjdk.jmh.annotations.*;
 
@@ -19,7 +19,7 @@ public class Call {
 	
 	public Call() {
 		number = randomPhoneNumber();
-		callTime = ThreadLocalRandom.current().nextInt(Main.CALL_TIME_SPREAD) + Main.CALL_TIME_SPREAD;
+		callTime = ThreadLocalRandom.current().nextInt(PhoneQueueSimulation.CALL_TIME_SPREAD) + PhoneQueueSimulation.CALL_TIME_SPREAD;
 	}
 	
 	@Override

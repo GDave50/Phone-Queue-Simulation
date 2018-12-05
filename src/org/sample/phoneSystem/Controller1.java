@@ -3,7 +3,7 @@ package org.sample.phoneSystem;
 import java.util.concurrent.ThreadLocalRandom;
 //import java.util.concurrent.TimeUnit;
 
-import org.sample.Main;
+import org.sample.PhoneQueueSimulation;
 import org.sample.SynchronizedQueue;
 
 //import org.openjdk.jmh.annotations.*;
@@ -23,7 +23,7 @@ public class Controller1 implements Runnable {
 	private final Thread[] threads;
 	
 	public Controller1() {
-		this (Main.N_OPERATORS, Main.QUEUE_SIZE);
+		this (PhoneQueueSimulation.N_OPERATORS, PhoneQueueSimulation.QUEUE_SIZE);
 	}
 	
 	/**
@@ -49,14 +49,14 @@ public class Controller1 implements Runnable {
 	public void run() {
 		start();
 		
-		for (int i = 0; i < Main.CALL_COUNT; ++i) {
+		for (int i = 0; i < PhoneQueueSimulation.CALL_COUNT; ++i) {
 			boolean added = pushQueue(new Call());
 			
 			if (! added)
 				System.out.println("* Queue full *");
 			
 			try {
-				Thread.sleep(Main.CALL_SPREAD + ThreadLocalRandom.current().nextInt(Main.CALL_SPREAD));
+				Thread.sleep(PhoneQueueSimulation.CALL_SPREAD + ThreadLocalRandom.current().nextInt(PhoneQueueSimulation.CALL_SPREAD));
 			} catch (InterruptedException ex) {
 			}
 		}

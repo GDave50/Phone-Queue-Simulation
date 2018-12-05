@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadLocalRandom;
 //import java.util.concurrent.TimeUnit;
 
-import org.sample.Main;
+import org.sample.PhoneQueueSimulation;
 
 //import org.openjdk.jmh.annotations.*;
 
@@ -23,7 +23,7 @@ public class Controller2 implements Runnable {
 	private final Thread[] threads;
 	
 	public Controller2() {
-		this (Main.N_OPERATORS);
+		this (PhoneQueueSimulation.N_OPERATORS);
 	}
 	
 	/**
@@ -48,14 +48,14 @@ public class Controller2 implements Runnable {
 	public void run() {
 		start();
 		
-		for (int i = 0; i < Main.CALL_COUNT; ++i) {
+		for (int i = 0; i < PhoneQueueSimulation.CALL_COUNT; ++i) {
 			boolean added = pushQueue(new Call());
 			
 			if (! added)
 				System.out.println("* Queue full *");
 			
 			try {
-				Thread.sleep(Main.CALL_SPREAD + ThreadLocalRandom.current().nextInt(Main.CALL_SPREAD));
+				Thread.sleep(PhoneQueueSimulation.CALL_SPREAD + ThreadLocalRandom.current().nextInt(PhoneQueueSimulation.CALL_SPREAD));
 			} catch (InterruptedException ex) {
 			}
 		}
